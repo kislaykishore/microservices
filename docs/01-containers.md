@@ -62,7 +62,7 @@ Benefits of Virtualization:
 
 ## Creating a Docker image
 
-Refer this wiki for creating a "Hello, World" image [Python Hello-World](examples/hello-world-python/README.md)
+Refer this wiki for creating a "Hello, World" image [Python Hello-World](../examples/hello-world-python/README.md)
 
 ## Related Concepts
 
