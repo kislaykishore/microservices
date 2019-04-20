@@ -56,5 +56,4 @@ Benefits of Virtualization:
 
 ## Containers vs VMs
 
-![Container vs VMs]
-!
+![Container vs VMs](https://github.com/kislaykishore/microservices/blob/master/images/container-vs-vm.png)
