@@ -22,3 +22,5 @@ We can then push it to Docker hub by using `docker push`
 
 Once published, you can run it as below:
 `docker run <username>/hello`
+
+If you want to wait indefinitely, you can use `docker run <username>/hello hello2.py`. This command takes an hour to run.

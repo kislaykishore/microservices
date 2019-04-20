@@ -66,5 +66,7 @@ Refer this wiki for creating a "Hello, World" image [Python Hello-World](example
 
 ## Related Concepts
 
-  * Distroless:
+  * ### Distroless  
     Generally, the base images of the image that we use contain some or the other operating system as the base image. Although, the operating system image is a stripped down version of the actual OS in that it doesn't have the kernel, but it basically means that you still are installing a full fleged operating system in the container. The more the number of softwares installed, more are the number of security risks. So, folks in Google came up with a concept of Distroless base images. These images don't contain any operating system. Instead, they provide language specific runtimes. For instance, they have an image targeting Java11. Such images help in reducing the surface area for security attacks. However, the problem here is that you don't have much say. If you are using a Java11 distroless image and you want to upgrade to Java12, you need to wait for a distroless image to become available. Another problem is that, since you don't have any operating system, the basic tools like bash are not available. So, you cannot just execute a /bin/bash shell to gain access. But again, this limitation comes with security benefits.
+  * ### Unikernel
+    When an application makes a system call, say to read data, there is a cost involved in copying the data from the kernel-space to the user-space. Unikernel aims to avoid this cost by having a single address space. This technology is promising from the performance standpoint, but it is currently not mature enough. As a matter of fact, the current implementations of unikernel are so unoptimized that they underperform when compared to their container counterparts.
