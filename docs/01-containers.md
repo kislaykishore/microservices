@@ -51,7 +51,7 @@ Virtualization is of two types:
  * Type-II -- The hypervisor runs on top of an OS e.g. VMware, VirtualBox
 
 Benefits of Virtualization:
-  * Virtualization helps in a better usage of a machine by allowing multiple OSes to be run on top of it
+  * Virtualization helps in a better utilization of a machine by allowing multiple OSes to be run on top of it
   * It also provides isolation between the different VMs
 
 ## Containers vs VMs
@@ -59,3 +59,10 @@ Benefits of Virtualization:
 | VM | Containers |
 | --- | --- |
 |![VM](https://github.com/kislaykishore/microservices/blob/master/images/vms.png)|![Containers](https://github.com/kislaykishore/microservices/blob/master/images/containers.png)|
+
+## Creating a Docker image
+
+ * [Python Hello-World](examples/hello-world-python/README.md)
+ 
+
+
