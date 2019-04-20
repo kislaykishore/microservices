@@ -41,7 +41,7 @@ Similarly, in case of network namespaces, each namespace has a private set of IP
 
 ## What is Docker?
 
-Docker is a container runtime engine. It takes an image as input and runs it. The running process is called a container. Docker utilizes the cgroup and namespaces features to isolate the processes running within a container and limit their resources. The isolation implies that one container cannot see another container running on the same physical host and limiting the resources implies that the required amount of CPUs and memory can be reserved for a container. This helps in making the performance more or less consistent across different systems.
+Docker is a container runtime engine. It takes an image as input and runs it. The running process is called a container. Docker utilizes the cgroup and namespaces features to isolate the processes running within a container and limit their resources. The isolation implies that one container cannot see another container running on the same physical host and limiting the resources implies that the required amount of CPUs and memory can be reserved for a container. This helps in making the performance more or less consistent across different systems. Please note that by default, there is no restriction imposed on the amount of memory a container can use. Docker can impose a hard limit on memory, or a soft one where it allows the container to use as much memory as needed unless certain conditions are met, such as if kernel detects low available memory.
 
 
 ## Virtualization

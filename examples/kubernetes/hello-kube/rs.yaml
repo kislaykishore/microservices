@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  name: hello-rs
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+    - key: stability
+      operator: In
+      values:
+      - prod
+    - key: app
+      operator: In
+      values:
+      - hello
+  template:
+    metadata:
+      labels:
+        stability: prod
+        app: hello
+    spec:
+      containers:
+      - image: kislayk/hello-world-java:latest
+        name: hello-world
+        ports:
+        - containerPort: 8080
+          protocol: TCP 

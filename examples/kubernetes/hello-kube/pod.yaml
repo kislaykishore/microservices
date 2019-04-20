@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: hello-pod
+spec:
+  containers:
+  - image: kislayk/hello-world-java:latest
+    name: hello-world
+    ports:
+    - containerPort: 8080
+      protocol: TCP 
