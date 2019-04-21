@@ -5,6 +5,10 @@ metadata:
   name: hello-rs
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+      stability: prod
   template:
     metadata:
       labels:
@@ -17,3 +21,20 @@ spec:
         ports:
         - containerPort: 8080
           protocol: TCP 
+
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: hello-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: hello
+    stability: prod
+  ports:
+  - name: http
+    port: 8888
+    targetPort: 8080
+    protocol: TCP
