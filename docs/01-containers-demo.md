@@ -14,3 +14,6 @@ Benefits of containerization:
 ## Benefits of layering
 
 ## The architecture: Daemon and client
+
+## Design considerations:
+ * Using environment variables vs configuration files
