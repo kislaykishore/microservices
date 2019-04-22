@@ -3,9 +3,10 @@
 ## Why containerize?
 
 The objective of containerization is to run software reliably and ensuring portability across different operating systems. This basically boils down to:
- * Making the containers self-contained units of execution
+ * Making the containers self-contained units of execution. You bundle the environment along with the executable.
  * Isolating them from other containers so that they don't depend upon anything else. In fact, processes within a container don't even know if there are other processes or containers running outside their own containers.
- *  The ability to limit their resource utilization. For instance, we can specify the maximum cpu or memory a container can use.
+ * The ability to limit their resource utilization. For instance, we can specify the maximum cpu or memory a container can use. 
+ * Less overhead than VMs. In fact, you can run hundreds (or thousands) of containers on a single machine, thanks to the Copy-on-write paradigm.
 
 ## Can a container created on Linux run on Windows?
 
