@@ -26,6 +26,11 @@ Benefits of containerization:
 
 ## Design considerations:
  * Using environment variables vs configuration files
+ * Running docker within docker is not a good idea
+
+## Gotcha's
+ * The timezone issue where the timezone is baked into the container. Illustrate this by using the centos:7 container. `date +%Z` is the command to print timezone
+   To fix this issue, run rm -rf /etc/localtime followed by ln -s /usr/share/zoneinfo/GMT
 
 ## Various docker commands:
  * docker login/logout
@@ -34,6 +39,7 @@ Benefits of containerization:
  * docker ps
  * docker tag: Explain the difference between the name and tag
  * docker image
+ * docker history
  * docker container
 
 ## The images for a given name:tag combination can change too. For instance, it can happen that ubuntu:trusty gets replaced with a different image but using the same name:tag combo. This can lead to issues. To prevent that, instead of specifying the name:tag combination, we can also specify the image sha, but then the image must be stored locally. 
