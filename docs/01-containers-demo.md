@@ -43,3 +43,10 @@ Benefits of containerization:
  * docker container
 
 ## The images for a given name:tag combination can change too. For instance, it can happen that ubuntu:trusty gets replaced with a different image but using the same name:tag combo. This can lead to issues. To prevent that, instead of specifying the name:tag combination, we can also specify the image sha, but then the image must be stored locally. 
+
+## Other related technologies/terminology
+ * rkt
+ * OCI
+ * runc
+ * containerd
+ * https://www.ianlewis.org/en/container-runtimes-part-2-anatomy-low-level-contai
