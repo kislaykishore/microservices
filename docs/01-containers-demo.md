@@ -14,6 +14,8 @@ Benefits of containerization:
     * Using multiple FROM commands
 
 ## Benefits of layering
+ * Docker AUFS file system
+ * Copy-on-write
 
 ## Difference between containers and images: how containers have a rw layer while image don't have any.
 

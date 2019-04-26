@@ -39,3 +39,7 @@ Services map port to another port. It provides a way to provide a single interfa
  * ClusterIP
  * NodePort
  * LoadBalancer
+
+Volumes:
+ * Each container can manage its own file system and not others'
+ * Non-persistent and persistent storage
