@@ -7,6 +7,9 @@ Benefits of containerization:
  * You are creating a sandboxed environment which means that it cannot affect other things outside of the sandbox
  * You package the dependencies along with the executable. This means it can run anywhere.
 
+# Containers vs Micro-VMs
+ * MicroVMs provide better isolation while providing the expected performance of containers e.g. Google's gVisor, Microsoft Hyper-V, Nabla containers
+
 * Demonstrate different ways of creating Docker images
   * Using `docker commit`
   * Using a Dockerfile

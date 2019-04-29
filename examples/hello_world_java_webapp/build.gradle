@@ -3,10 +3,10 @@ plugins {
     id 'org.springframework.boot' version '2.0.5.RELEASE'
     id 'com.google.cloud.tools.jib' version '1.0.2'
     id 'application'
-    id 'war'
 }
 
 mainClassName = 'hello.App'
+applicationDefaultJvmArgs = ['-Xmx128M']
 repositories {
     jcenter()
 }
@@ -31,5 +31,8 @@ dependencies {
 jib {
     from {
         image = 'gcr.io/distroless/java:11'
+    }
+    to {
+        image = 'gcr.io/kislaykishore111/hello'
     }
 }
