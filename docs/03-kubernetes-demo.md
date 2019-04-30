@@ -43,3 +43,7 @@ Services map port to another port. It provides a way to provide a single interfa
 Volumes:
  * Each container can manage its own file system and not others'
  * Non-persistent and persistent storage
+
+Deployments:
+ * Show rolling updates
+ * Show recreate strategy of deleting existing pods and spawning new ones

@@ -1,0 +1,16 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: helloworld-java
+  namespace: default
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        spec:
+          container:
+            # replace meteatamel with your DockerHub 
+            image: gcr.io/kislaykishore111/hello
+            env:
+              - name: TARGET
+                value: "Java hello"

@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloGradleController {
     @GetMapping
     public String helloGradle() {
-        return "Hello Gradle!";
+        return "Hello Gradle v2!";
     }
 }

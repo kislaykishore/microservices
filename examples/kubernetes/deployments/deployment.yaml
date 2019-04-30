@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hello-world
+
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: hello-java
+      labels:
+        pod: prod
+    spec:
+      containers:
+      - image: kislayk/hello:v1
+        name: hello
+        ports:
+        - containerPort: 8080
+          name: http
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
+  selector:
+    matchLabels:
+      pod: prod      
+  minReadySeconds: 10
+---
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: hello-svc
+
+spec:
+  ports:
+  - targetPort: http
+    port: 8080
+  selector:
+    pod: prod
+
+  type: LoadBalancer
