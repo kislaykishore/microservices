@@ -1,7 +1,7 @@
 # Docker demonstration
 
 ## Run a go image and use it to demonstrate the benefits of containerization
-`docker run go:latest`
+`docker run golang:latest`
 
 Benefits of containerization:
  * You are creating a sandboxed environment which means that it cannot affect other things outside of the sandbox
