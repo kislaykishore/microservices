@@ -11,6 +11,8 @@ repositories {
     jcenter()
 }
 
+sourceCompatibility = 11
+targetCompatibility = 11
 dependencies {
     implementation platform('org.springframework.boot:spring-boot-dependencies:2.0.5.RELEASE')
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -31,8 +33,5 @@ dependencies {
 jib {
     from {
         image = 'gcr.io/distroless/java:11'
-    }
-    to {
-        image = 'gcr.io/kislaykishore111/hello'
     }
 }
