@@ -47,3 +47,6 @@ Volumes:
 Deployments:
  * Show rolling updates
  * Show recreate strategy of deleting existing pods and spawning new ones
+
+Autoscaling
+ * Why memory based autoscaling is not good
