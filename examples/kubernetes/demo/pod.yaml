@@ -1,0 +1,14 @@
+kind: Pod
+apiVersion: v1
+
+metadata:
+  name: java-webapp
+
+spec:
+  containers:
+  - image: kislayk/hello-world-java
+    name: hello
+    ports:
+    - containerPort: 8080
+      name: http
+    

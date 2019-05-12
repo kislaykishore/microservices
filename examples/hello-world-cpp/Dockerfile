@@ -1,3 +1,4 @@
-FROM ubuntu:latest
+#FROM ubuntu:latest
+FROM scratch
 ADD a.out /
-CMD ["/a.out"]
+CMD ["./a.out"]

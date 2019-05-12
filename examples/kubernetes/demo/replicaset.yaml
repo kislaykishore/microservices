@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  name: my-rs
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      env: prod
+  template:
+    metadata:
+      name: java-webapp
+      labels:
+        env: prod
+    spec:
+      containers:
+      - image: kislayk/hello-world-java
+        name: hello
+        ports:
+        - containerPort: 8080
+          name: http

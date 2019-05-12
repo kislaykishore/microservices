@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: hello-svc
+
+spec:
+  selector:
+    env: prod
+  type: LoadBalancer
+  ports:
+  - port: 8000
+    targetPort: http
