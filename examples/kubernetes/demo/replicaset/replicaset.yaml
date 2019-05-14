@@ -3,17 +3,18 @@ kind: ReplicaSet
 
 metadata:
   name: my-rs
+  namespace: ns1
 
 spec:
   replicas: 3
   selector:
     matchLabels:
-      env: prod
+      app: hello1
   template:
     metadata:
       name: java-webapp
       labels:
-        env: prod
+        app: hello1
     spec:
       containers:
       - image: kislayk/hello-world-java

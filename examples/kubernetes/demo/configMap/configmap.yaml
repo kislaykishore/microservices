@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Namespace
+
+metadata:
+  name: ns3
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  name: my-rs
+  namespace: ns3
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello2
+  template:
+    metadata:
+      name: java-webapp
+      labels:
+        app: hello2
+    spec:
+      containers:
+      - image: kislayk/hello-world-env
+        name: hello
+        ports:
+        - containerPort: 8080
+          name: http
+---
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: hello-svc
+  namespace: ns3
+
+spec:
+  selector:
+    app: hello2
+  type: LoadBalancer
+  ports:
+  - port: 8000
+    targetPort: http
+
