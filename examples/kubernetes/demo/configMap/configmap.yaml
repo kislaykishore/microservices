@@ -2,14 +2,24 @@ apiVersion: v1
 kind: Namespace
 
 metadata:
-  name: ns3
+  name: ns4
+---
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: name-map
+  namespace: ns4
+
+data:
+  name: kishore  
 ---
 apiVersion: apps/v1
 kind: ReplicaSet
 
 metadata:
   name: my-rs
-  namespace: ns3
+  namespace: ns4
 
 spec:
   replicas: 3
@@ -25,6 +35,9 @@ spec:
       containers:
       - image: kislayk/hello-world-env
         name: hello
+        envFrom:
+        - configMapRef:
+            name: name-map
         ports:
         - containerPort: 8080
           name: http
@@ -34,7 +47,7 @@ apiVersion: v1
 
 metadata:
   name: hello-svc
-  namespace: ns3
+  namespace: ns4
 
 spec:
   selector:
