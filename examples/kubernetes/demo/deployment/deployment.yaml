@@ -29,10 +29,8 @@ spec:
         name: hello
         imagePullPolicy: Always
         readinessProbe:
-          httpGet:
-            path: /
+          tcpSocket:
             port: 8080
-          initialDelaySeconds: 10
           periodSeconds: 3
           successThreshold: 1
         

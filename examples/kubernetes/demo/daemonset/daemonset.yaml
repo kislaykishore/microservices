@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Namespace
+
+metadata:
+  name: ns7
+
+---
+
+apiVersion: apps/v1
+kind: DaemonSet
+
+metadata:
+  name: my-ds
+  namespace: ns7
+
+spec:
+  selector:
+    matchLabels:
+      app: hello1
+  template:
+    metadata:
+      name: java-webapp
+      labels:
+        app: hello1
+    spec:
+      containers:
+      - image: kislayk/hello-world-java
+        name: hello
+        ports:
+        - containerPort: 8080
+          name: http

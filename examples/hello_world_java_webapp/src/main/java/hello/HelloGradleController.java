@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloGradleController {
     @GetMapping
     public String helloGradle() {
-        String name = System.getenv("name");
-        if(name == null) {
-            name = "World!";
-        }
-        return "Hello " + name + "!";
+        return "Hello, I am version 2";
     }
 }
