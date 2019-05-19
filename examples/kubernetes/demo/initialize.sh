@@ -33,6 +33,8 @@ kubectl apply --filename https://github.com/knative/serving/releases/download/v0
    --filename https://github.com/knative/serving/releases/download/v0.6.0/monitoring.yaml \
    --filename https://raw.githubusercontent.com/knative/serving/v0.6.0/third_party/config/build/clusterrole.yaml
 
+kubectl label namespace default istio-injection=enabled
+
 kubectl get pods --namespace knative-serving
 kubectl get pods --namespace knative-build
 kubectl get pods --namespace knative-eventing
