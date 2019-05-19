@@ -33,6 +33,41 @@ spec:
 
 ---
 
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: my-dep-2
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+      version: v2
+  template:
+    metadata:
+      name: java-webapp
+      labels:
+        app: hello
+        version: v2
+    spec:
+      containers:
+      - image: kislayk/hello:v2
+        name: hello
+        imagePullPolicy: Always
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          periodSeconds: 3
+          successThreshold: 1
+        
+        ports:
+        - containerPort: 8080
+          name: http
+
+---
+
 kind: Service
 apiVersion: v1
 
@@ -97,43 +132,8 @@ spec:
     - destination:
         host: hello-svc
         subset: v1
-      weight: 10
+      weight: 100
     - destination:
         host: hello-svc
         subset: v2
-      weight: 90
-
----
-apiVersion: apps/v1
-kind: Deployment
-
-metadata:
-  name: my-dep-2
-
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: hello
-      version: v2
-  template:
-    metadata:
-      name: java-webapp
-      labels:
-        app: hello
-        version: v2
-    spec:
-      containers:
-      - image: kislayk/hello:v2
-        name: hello
-        imagePullPolicy: Always
-        readinessProbe:
-          tcpSocket:
-            port: 8080
-          periodSeconds: 3
-          successThreshold: 1
-        
-        ports:
-        - containerPort: 8080
-          name: http
-
+      weight: 0
