@@ -26,5 +26,5 @@ spec:
         spec:
           restartPolicy: OnFailure
           containers:
-          - image: kislayk/fileedit:v4
+          - image: kislayk/fileedit:v5
             name: edit-container
