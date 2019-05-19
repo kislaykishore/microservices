@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.0.5.RELEASE'
+    id 'com.google.cloud.tools.jib' version '1.0.2'
+    id 'application'
+}
+
+mainClassName = 'hello.App'
+applicationDefaultJvmArgs = ['-Xmx128M']
+repositories {
+    jcenter()
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+dependencies {
+    implementation platform('org.springframework.boot:spring-boot-dependencies:2.0.5.RELEASE')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    components {
+        withModule('org.springframework:spring-beans') {
+            allVariants {
+                withDependencyConstraints {
+                    // Need to patch constraints because snakeyaml is an optional dependency
+                    it.findAll { it.name == 'snakeyaml' }.each { it.version { strictly '1.19' } }
+                }
+            }
+        }
+    }
+}
+jib {
+    from {
+        image = 'gcr.io/distroless/java:11'
+    }
+}

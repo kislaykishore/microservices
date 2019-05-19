@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Namespace
+
+metadata:
+  name: ns8
+
+---
+
+apiVersion: batch/v1beta1
+kind: CronJob
+
+metadata:
+  namespace: ns8
+  name: file-edit-job
+
+spec:
+  concurrencyPolicy: Forbid
+  schedule: '* * * * *'
+  jobTemplate:
+    metadata:
+      name: edit-app
+      labels:
+        app: editor
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - image: kislayk/fileedit:v4
+            name: edit-container

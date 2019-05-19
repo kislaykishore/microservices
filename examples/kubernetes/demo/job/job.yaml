@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Namespace
+
+metadata:
+  name: ns8
+
+---
+
+apiVersion: batch/v1
+kind: Job
+
+metadata:
+  namespace: ns8
+  name: file-edit-job
+
+spec:
+  template:
+    metadata:
+      name: edit-app
+      labels:
+        app: editor
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - image: kislayk/fileedit:v4
+        name: edit-container
