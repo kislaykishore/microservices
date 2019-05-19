@@ -2,10 +2,17 @@
 set -v
 set -e
 
-gcloud compute disks delete kube-test
+if [ "$1" == "" ]; then
+  echo "Please provide the cluster name"
+  exit 1
+else
+  echo "cluster name: $1"
+fi  
+
+gcloud compute disks delete kube-test --quiet || true
 gcloud compute disks create --size=1GiB --zone=us-central1-a kube-test || true
 
-gcloud beta container clusters create my-cluster --addons=Istio,HorizontalPodAutoscaling,HttpLoadBalancing --istio-config=auth=MTLS_STRICT --cluster-version=latest --machine-type=n1-standard-1 --num-nodes=3 --image-family=cos-stable --enable-stackdriver-kubernetes --enable-ip-alias --enable-autoscaling --min-nodes=0 --max-nodes=4 --enable-autorepair --scopes cloud-platform 
+gcloud beta container clusters create "$1" --addons=Istio,HorizontalPodAutoscaling,HttpLoadBalancing --istio-config=auth=MTLS_STRICT --cluster-version=latest --machine-type=n1-standard-1 --num-nodes=3 --image-family=cos-stable --enable-stackdriver-kubernetes --enable-ip-alias --enable-autoscaling --min-nodes=1 --max-nodes=3 --enable-autorepair --scopes cloud-platform 
 
 kubectl create clusterrolebinding cluster-admin-binding \
      --clusterrole=cluster-admin \
