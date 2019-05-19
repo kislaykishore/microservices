@@ -25,7 +25,7 @@ spec:
         app: hello1
     spec:
       containers:
-      - image: kislayk/hello:v2
+      - image: kislayk/hello:v1
         name: hello
         imagePullPolicy: Always
         readinessProbe:
