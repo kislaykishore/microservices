@@ -54,4 +54,6 @@ curl https://storage.googleapis.com/gke-release/istio/release/1.0.3-gke.3/patche
 # Install Jaeger (tracing)
 curl https://storage.googleapis.com/gke-release/istio/release/1.0.3-gke.3/patches/install-tracing.yaml | kubectl apply -n istio-system -f -
 
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
 
+helm init --service-account tiller
