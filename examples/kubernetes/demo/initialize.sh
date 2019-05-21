@@ -17,7 +17,7 @@ gcloud beta container clusters create "$1" --addons=Istio,HorizontalPodAutoscali
 kubectl create clusterrolebinding cluster-admin-binding \
      --clusterrole=cluster-admin \
      --user=$(gcloud config get-value core/account)
-
+: '
 kubectl apply --selector knative.dev/crd-install=true \
    --filename https://github.com/knative/serving/releases/download/v0.6.0/serving.yaml \
    --filename https://github.com/knative/build/releases/download/v0.6.0/build.yaml \
@@ -32,7 +32,7 @@ kubectl apply --filename https://github.com/knative/serving/releases/download/v0
    --filename https://github.com/knative/eventing-sources/releases/download/v0.6.0/eventing-sources.yaml \
    --filename https://github.com/knative/serving/releases/download/v0.6.0/monitoring.yaml \
    --filename https://raw.githubusercontent.com/knative/serving/v0.6.0/third_party/config/build/clusterrole.yaml
-
+'
 kubectl label namespace default istio-injection=enabled
 
 kubectl get pods --namespace knative-serving
