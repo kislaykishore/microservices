@@ -1,0 +1,152 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: dep1
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+      version: v1
+  template:
+    metadata:
+      name: java-webapp
+      labels:
+        app: hello
+        version: v1
+    spec:
+      containers:
+      - image: kislayk/hello:v1
+        name: hello
+        imagePullPolicy: Always
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          periodSeconds: 3
+          successThreshold: 1
+        
+        ports:
+        - containerPort: 8080
+          name: http
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: dep2
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+      version: v2
+  template:
+    metadata:
+      name: java-webapp
+      labels:
+        app: hello
+        version: v2
+    spec:
+      containers:
+      - image: kislayk/hello:v2
+        name: hello
+        imagePullPolicy: Always
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          periodSeconds: 3
+          successThreshold: 1
+        
+        ports:
+        - containerPort: 8080
+          name: http
+
+---
+
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: hello-svc
+
+spec:
+  selector:
+    app: hello
+  ports:
+  - port: 8000
+    targetPort: http
+
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: my-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: hello-destinationrule
+spec:
+  host: hello-svc
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: hello-virtualservice
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - my-gateway
+  http:
+  - fault:
+      abort:
+        httpStatus: 500
+        percent: 50
+    route:
+    - destination:
+        host: hello-svc
+        subset: v1
+      weight: 50
+    - destination:
+        host: hello-svc
+        subset: v2
+      weight: 50
+  - route:
+    - destination:
+        host: hello-svc
+        subset: v1
+      weight: 50
+    - destination:
+        host: hello-svc
+        subset: v2
+      weight: 50
